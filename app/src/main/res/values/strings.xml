@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Lista de Filmes</string>
+    <string name="filtrar">Filtrar</string>
+    <string name="lancamento">Lançamento</string>
+    <string name="nome">Nome</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="msg_feedback_expand">Realize uma pesquisa por título para encontrar seus filmes favoritos</string>
+    <string name="msg_feedback_collapse">Clique no icone de busca para encontrar filmes</string>
+    <string name="buscar">Buscar</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="imagem_de_perfil">Imagem de perfil</string>
+    <string name="abrir_drawer">Abrir drawer</string>
+    <string name="fechar_drawer">Fechar drawer</string>
+    <string name="msg_permissao_negada">Não será possivel continuar com a aplicação. O aplicativo será fechado.</string>
+    <string name="msg_titulo_permissao_negada">Permissões negadas</string>
+    <string name="lista_filmes_vazia">Nenhum Filme favorito encontrado\nAdicione filmes à sua lista.</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="p_ster_original_do_filme">Pôster original do filme</string>
+    <string name="t_tulo_do_filme">Título do filme</string>
+    <string name="adicionar_filme">Adicionar Filme</string>
+    <string name="btn_alert_dialog_adicionar">Adicionar</string>
+    <string name="btn_alert_dialog_cancelar">Cancelar</string>
+    <string name="msg_erro_problema_conexao_internet">Oops! Não foi possível buscar filmes. Verifique sua conexão.</string>
+    <string name="msg_erro_nenhum_encontrado">Oops! Nenhum filme encontrado.</string>
+    <string name="felipe_levez_exemplo_nav_drawer">Felipe Levez</string>
+    <string name="estudante_de_ads_exemplo_nav_drawer">Estudante de ADS</string>
+</resources>
