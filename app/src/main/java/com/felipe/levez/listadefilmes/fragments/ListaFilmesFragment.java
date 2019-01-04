@@ -117,8 +117,9 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
     }
 
     private void chamaAlertDialogADDFilme(){
-        LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getContext());
-        @SuppressLint("InflateParams") View view = layoutInflaterAndroid.inflate(R.layout.filme_add_input_dialog_box, null);
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        @SuppressLint("InflateParams")
+        View view = layoutInflater.inflate(R.layout.filme_add_input_dialog_box, null);
         AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
         alertDialogBuilderUserInput.setView(view);
 
