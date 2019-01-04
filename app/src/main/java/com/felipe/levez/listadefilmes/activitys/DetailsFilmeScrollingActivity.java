@@ -9,13 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.felipe.levez.listadefilmes.R;
 import com.felipe.levez.listadefilmes.interfaces.DetailsFilmeScrollingActivityContrato;
 import com.felipe.levez.listadefilmes.models.Filme;
 import com.felipe.levez.listadefilmes.presenter.DetailsFilmeScrollingActivityPresenter;
 import com.squareup.picasso.Picasso;
-
 import java.util.Objects;
 
 public class DetailsFilmeScrollingActivity extends AppCompatActivity implements DetailsFilmeScrollingActivityContrato.View {
