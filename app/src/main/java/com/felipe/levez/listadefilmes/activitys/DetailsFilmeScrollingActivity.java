@@ -65,23 +65,18 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
                 }
             });
         }
-
         if(presenter.filmeEstaNosFavoritos(filme)){
             setCorFAB(true);
         }else{
             setCorFAB(false);
         }
-
         setupActionButtonFABFav();
-
     }
 
     private void setupActionButtonFABFav() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if(tipo_lista == ARG_TIPO_BUSCA){
                     if(Objects.equals(fab.getImageTintList(), ColorStateList.valueOf(getResources().getColor(R.color.colorRed)))){
                         presenter.removerFilmefavorito(filme);
@@ -90,7 +85,6 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
                         presenter.inserirFilmeFavorito(filme);
                         setCorFAB(true);
                     }
-
                 }else{
                     if(Objects.equals(fab.getImageTintList(), ColorStateList.valueOf(getResources().getColor(R.color.colorWhite)))){
                         presenter.inserirFilmeFavorito(filme);
@@ -99,7 +93,6 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
                         presenter.removerFilmefavorito(filme);
                         setCorFAB(false);
                     }
-
                 }
             }
         });
@@ -108,20 +101,16 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
     private void setCorFAB(boolean ehFavorito){
         if(ehFavorito){
             fab.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorRed)));
-
         }else {
             fab.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorWhite)));
         }
     }
 
     private void setupValores(){
-
         presenter = new DetailsFilmeScrollingActivityPresenter(getApplicationContext());
         toolbar.setTitle(filme.getTitulo());
-
         if(filme!=null && filme.getPoster()!=null)
             Picasso.get().load(filme.getPoster()).into(iv_toolbar);
-
         data.setText(filme.getDataLancamento());
         descricao.setText(filme.getDescricao());
         votos.setText(filme.getVotoMedio());
