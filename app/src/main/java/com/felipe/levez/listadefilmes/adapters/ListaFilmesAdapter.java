@@ -28,7 +28,6 @@ public class ListaFilmesAdapter extends RecyclerView.Adapter<ListaFilmesAdapter.
         this.lista_filmes = filmes;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -62,11 +61,13 @@ public class ListaFilmesAdapter extends RecyclerView.Adapter<ListaFilmesAdapter.
         Collections.sort(lista_filmes, tipo_ordenacao != ORDENA_LANCAMENTO ? Filme.TituloComparator : Filme.DataComparator);
         notifyDataSetChanged();
     }
+
     public void insereItem(Filme filme){
         this.lista_filmes.add(filme);
         notifyItemInserted(getItemCount());
         notifyDataSetChanged();
     }
+
     public void removeItem(int position){
         this.lista_filmes.remove(position);
         notifyItemRemoved(position);
@@ -82,13 +83,10 @@ public class ListaFilmesAdapter extends RecyclerView.Adapter<ListaFilmesAdapter.
         this.filmeClickListener = filmeClickListener;
     }
 
-
-
     public void removeAll() {
         this.lista_filmes.clear();
         notifyDataSetChanged();
     }
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
