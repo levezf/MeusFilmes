@@ -15,7 +15,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.felipe.levez.listadefilmes.R;
 import com.felipe.levez.listadefilmes.activitys.DetailsFilmeScrollingActivity;
 import com.felipe.levez.listadefilmes.adapters.ListaFilmesAdapter;
@@ -32,6 +32,7 @@ import com.felipe.levez.listadefilmes.interfaces.FilmeClickListener;
 import com.felipe.levez.listadefilmes.interfaces.ListaFilmesContrato;
 import com.felipe.levez.listadefilmes.models.Filme;
 import com.felipe.levez.listadefilmes.presenter.ListaFilmesPresenter;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -65,7 +66,6 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
     private boolean submitSearch = false;
     private int positionItemAessadoNoDetails;
     private FloatingActionButton fab_add;
-    private String textSearch;
     private MenuItem menuPesquisa;
 
     public static ListaFilmesFragment newInstance(){
