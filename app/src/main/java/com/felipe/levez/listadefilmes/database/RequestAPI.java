@@ -35,7 +35,8 @@ public class RequestAPI {
         if(page == 1)
             model.visibilidadeProgressBarLista(View.VISIBLE);
         String url = "https://api.themoviedb.org/3/search/movie?api_key=8ae03112f333d6386161cffe6268c009&language=pt-BR&query=";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url + busca + ("&page=" + (String.valueOf(page))),
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url + formatConsulta(busca) + ("&page=" + (String.valueOf(page))),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -85,11 +86,17 @@ public class RequestAPI {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                model.visibilidadeProgressBarLista(View.INVISIBLE);
+                cancelRequest();
                 model.exibeErroRequisicao(msg_erro_internet);
             }
         });
         queue.add(stringRequest);
 
+    }
+
+    private String formatConsulta(String busca) {
+        return busca.replace(" ", "%20");
     }
 
     public void cancelRequest(){

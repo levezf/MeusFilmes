@@ -65,24 +65,18 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
                 }
             });
         }
-        setCorFAB(tipo_lista==ARG_TIPO_FAV);
 
-
-
-        if(ehFilmeAdicionadoManualmente()){
+        if(presenter.filmeEstaNosFavoritos(filme)){
             setCorFAB(true);
-
         }else{
-            if(presenter.filmeEstaNosFavoritos(filme)){
-                setCorFAB(true);
-            }else{
-                setCorFAB(false);
-            }
-
+            setCorFAB(false);
         }
 
+        setupActionButtonFABFav();
 
+    }
 
+    private void setupActionButtonFABFav() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,10 +103,6 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
                 }
             }
         });
-    }
-
-    private boolean ehFilmeAdicionadoManualmente(){
-        return filme.getId().equals(filme.getTitulo());
     }
 
     private void setCorFAB(boolean ehFavorito){
