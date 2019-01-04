@@ -42,7 +42,7 @@ public class ListaFilmesAdapter extends RecyclerView.Adapter<ListaFilmesAdapter.
             viewHolder.pb_dados.setVisibility(View.INVISIBLE);
 
             viewHolder.tv_titulo.setText(lista_filmes.get(i).getTitulo());
-            viewHolder.tv_nota.setText((lista_filmes.get(i).getVotoMedio()==null)? "Não há recomendação":lista_filmes.get(i).getVotoMedio());
+            viewHolder.tv_nota.setText(lista_filmes.get(i).getVotoMedio());
 
             viewHolder.tv_titulo.setVisibility(View.VISIBLE);
             viewHolder.tv_nota.setVisibility(View.VISIBLE);
