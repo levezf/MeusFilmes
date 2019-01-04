@@ -15,6 +15,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,6 +65,8 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
     private boolean submitSearch = false;
     private int positionItemAessadoNoDetails;
     private FloatingActionButton fab_add;
+    private String textSearch;
+    private MenuItem menuPesquisa;
 
     public static ListaFilmesFragment newInstance(){
         return new ListaFilmesFragment();
@@ -77,6 +80,7 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setRetainInstance(true);
+
         if(savedInstanceState!=null){
             lista_filmes = savedInstanceState.getParcelableArrayList(SAVED_LISTA_FILMES);
             tipoLista = savedInstanceState.getInt(ARG_TIPO_LISTA);
@@ -167,7 +171,7 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
         adapter.setOnItemClickListener(new FilmeClickListener() {
             @Override
             public void onFilmeClick(int position) {
-                pesquisando=null;
+               // pesquisando=null;
                 Intent intent = new Intent(getContext(), DetailsFilmeScrollingActivity.class);
                 intent.putExtra(OPT_FILME, adapter.lista_filmes.get(position));
                 positionItemAessadoNoDetails = position;
@@ -205,6 +209,9 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList(SAVED_LISTA_FILMES, lista_filmes);
         outState.putInt(ARG_TIPO_LISTA, tipoLista);
+        if(pesquisando != null && pesquisando.isEmpty() && !menuPesquisa.isActionViewExpanded()){
+            pesquisando=null;
+        }
         outState.putString(SAVED_PESQUISANDO, pesquisando);
         outState.putBoolean(SAVED_SUBMIT, submitSearch);
     }
@@ -238,7 +245,7 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
         if(tipoLista==ARG_TIPO_BUSCA){
 
 
-            MenuItem menuPesquisa = menu.findItem(R.id.action_pesquisar);
+            menuPesquisa = menu.findItem(R.id.action_pesquisar);
             SearchView sv_busca = (SearchView) menuPesquisa.getActionView();
             sv_busca.setQueryHint(getString(R.string.pesquisar));
 
@@ -246,16 +253,22 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
             menuPesquisa.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_ALWAYS );
             sv_busca.setMaxWidth(Integer.MAX_VALUE);
 
-            final String textSearch = pesquisando;
 
-            sv_busca.setOnCloseListener(new SearchView.OnCloseListener() {
-                @Override
-                public boolean onClose() {
-                    adapter.removeAll();
-                    rv_lista_filmes.setVisibility(View.INVISIBLE);
-                    return false;
+
+            if(pesquisando !=null){
+                menuPesquisa.expandActionView();
+                if(!pesquisando.isEmpty()) {
+                    sv_busca.setQuery(pesquisando, submitSearch);
+                    if(!submitSearch){
+                        msgExpand();
+                    }else{
+                        exibeListaDeFilmesCarregada();
+                    }
+
+                }else{
+                    msgExpand();
                 }
-            });
+            }
 
             menuPesquisa.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
 
@@ -267,12 +280,14 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
 
                 @Override
                 public boolean onMenuItemActionCollapse(MenuItem item) {
-                    pesquisando=null;
+                    presenter.cancelaBuscasApi();
                     submitSearch =false;
+                    adapter.removeAll();
                     msgCollapse();
                     return true;
                 }
             });
+
 
             sv_busca.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
@@ -285,12 +300,11 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
                         adapter.removeAll();
                         presenter.buscaFilmes(query);
                         submitSearch=true;
-                        tv_feedback.setVisibility(View.INVISIBLE);
-                        rv_lista_filmes.setVisibility(View.VISIBLE);
+                        exibeListaDeFilmesCarregada();
                         pesquisando = query;
 
                     }
-                    return false;
+                    return true;
                 }
 
                 @Override
@@ -300,15 +314,15 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
                 }
             });
 
-            if(textSearch !=null ){
-                menuPesquisa.expandActionView();
-                if(!textSearch.isEmpty()) {
-                    sv_busca.setQuery(textSearch, submitSearch);
-                }
-            }
+
         }
     }
 
+    
+    private void exibeListaDeFilmesCarregada(){
+        tv_feedback.setVisibility(View.INVISIBLE);
+        rv_lista_filmes.setVisibility(View.VISIBLE);
+    }
 
     private void msgExpand(){
         adapter.removeAll();

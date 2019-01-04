@@ -85,7 +85,7 @@ public class ListaFilmesAdapter extends RecyclerView.Adapter<ListaFilmesAdapter.
 
 
     public void removeAll() {
-        lista_filmes.clear();
+        this.lista_filmes.clear();
         notifyDataSetChanged();
     }
 
