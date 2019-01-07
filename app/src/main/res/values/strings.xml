@@ -24,4 +24,5 @@
     <string name="msg_erro_nenhum_encontrado">Oops! Nenhum filme encontrado.</string>
     <string name="felipe_levez_exemplo_nav_drawer">Felipe Levez</string>
     <string name="estudante_de_ads_exemplo_nav_drawer">Estudante de ADS</string>
+    <string name="lista_favoritos">Lista de Favoritos</string>
 </resources>

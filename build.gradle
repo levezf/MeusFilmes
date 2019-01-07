@@ -25,3 +25,10 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    picassoVersion = "2.71828"
+    androidSuportVersion = "28.0.0"
+    volleyVersion = "1.1.1"
+    constraintVersion = "1.1.3"
+}

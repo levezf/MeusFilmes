@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     private void setupToobar() {
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Lista de Favoritos");
+        toolbar.setTitle(R.string.lista_favoritos);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
