@@ -40,8 +40,6 @@ import static com.felipe.levez.listadefilmes.models.Filme.criaFilmeManualmente;
 
 public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato.View{
 
-
-
     private static final String SAVED_LISTA_FILMES = "lista_filmes";
     private static final String SAVED_PESQUISANDO = "pesquisando";
     private static final String SAVED_SUBMIT = "submit";
@@ -74,7 +72,6 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
 
     public ListaFilmesFragment() {
     }
-
 
     @Nullable
     @Override
