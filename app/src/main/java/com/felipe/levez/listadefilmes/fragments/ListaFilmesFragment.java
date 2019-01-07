@@ -51,6 +51,7 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
     private static final int ORDENA_TITULO = 1;
     private static final int REQUEST_CODE = 1;
     private static final String RESULT_ACTIVITY_DETAILS = "result";
+    private static final String SAVED_ADD_FILME = "add_filme";
 
     private View view;
     private ArrayList<Filme> lista_filmes = new ArrayList<>();
@@ -65,6 +66,8 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
     private int positionItemAessadoNoDetails;
     private FloatingActionButton fab_add;
     private MenuItem menuPesquisa;
+    private AlertDialog alertDialogAddFilme;
+    private boolean estaAdicionandoFilme=false;
 
     public static ListaFilmesFragment newInstance(){
         return new ListaFilmesFragment();
@@ -83,6 +86,7 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
             tipoLista = savedInstanceState.getInt(ARG_TIPO_LISTA);
             pesquisando = savedInstanceState.getString(SAVED_PESQUISANDO);
             submitSearch = savedInstanceState.getBoolean(SAVED_SUBMIT);
+            estaAdicionandoFilme = savedInstanceState.getBoolean(SAVED_ADD_FILME);
         }else{
             assert getArguments() != null;
             tipoLista = getArguments().getInt(ARG_TIPO_LISTA);
@@ -102,13 +106,16 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
             fab_add.hide();
         }
 
-
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chamaAlertDialogADDFilme();
             }
         });
+
+        if(estaAdicionandoFilme){
+            chamaAlertDialogADDFilme();
+        }
 
         return view;
     }
@@ -117,11 +124,11 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         @SuppressLint("InflateParams")
         View view = layoutInflater.inflate(R.layout.filme_add_input_dialog_box, null);
-        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
-        alertDialogBuilderUserInput.setView(view);
+        AlertDialog.Builder alertDialogBuilderAdapter = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
+        alertDialogBuilderAdapter.setView(view);
 
         final EditText userInputDialogEditText = view.findViewById(R.id.titulo_filme);
-        alertDialogBuilderUserInput
+        alertDialogBuilderAdapter
                 .setCancelable(false)
                 .setPositiveButton(R.string.btn_alert_dialog_adicionar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogBox, int id) {
@@ -141,8 +148,8 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
                             }
                         });
 
-        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
-        alertDialogAndroid.show();
+        alertDialogAddFilme = alertDialogBuilderAdapter.create();
+        alertDialogAddFilme.show();
     }
 
     @Override
@@ -212,6 +219,10 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
         }
         outState.putString(SAVED_PESQUISANDO, pesquisando);
         outState.putBoolean(SAVED_SUBMIT, submitSearch);
+
+        outState.putBoolean(SAVED_ADD_FILME, alertDialogAddFilme != null && alertDialogAddFilme.isShowing());
+        
+        
     }
 
     private void setupFindViewByIds(){
