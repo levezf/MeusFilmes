@@ -23,6 +23,12 @@ public class RequestAPI {
     private final String msg_erro_nao_enocntrado;
     private final RequestQueue queue;
     private final String msg_erro_internet;
+    private static final String LINK_API = "https://api.themoviedb.org";
+    private static final String VERSION_API = "3";
+    private static final String FINFING_DATA =  "search";
+    private static final String API_KEY = "api_key=8ae03112f333d6386161cffe6268c009";
+    private static final String LANGUAGE = "language=pt-BR";
+    private static final String TIPO_BUSCA = "movie";
 
     public RequestAPI(ListaFilmesContrato.Model model, Context context) {
         this.model = model;
@@ -34,7 +40,9 @@ public class RequestAPI {
     public void executeSearch(int page, final String busca) {
         if(page == 1)
             model.visibilidadeProgressBarLista(View.VISIBLE);
-        String url = "https://api.themoviedb.org/3/search/movie?api_key=8ae03112f333d6386161cffe6268c009&language=pt-BR&query=";
+//        String url = "https://api.themoviedb.org/3/search/movie?api_key=8ae03112f333d6386161cffe6268c009&language=pt-BR&query=";
+
+        String url = LINK_API+"/"+VERSION_API+"/"+FINFING_DATA+"/"+TIPO_BUSCA+"?"+API_KEY+"&"+LANGUAGE+"&query=";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url + formatConsulta(busca) + ("&page=" + (String.valueOf(page))),
                 new Response.Listener<String>() {
