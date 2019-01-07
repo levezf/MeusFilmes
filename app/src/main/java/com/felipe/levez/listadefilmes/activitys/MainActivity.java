@@ -37,12 +37,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private final static int REQUEST_CODE_ASK_PERMISSIONS = 1;
     private static final String[] REQUIRED_SDK_PERMISSIONS = new String[] {
             Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.INTERNET};
-    private Bundle saved;
+    private Bundle savedInstanceState = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.saved = savedInstanceState;
+        setContentView(R.layout.activity_main);
+        this.savedInstanceState = savedInstanceState;
         checkPermissions();
 
     }
@@ -68,11 +69,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
 
     private void setupOnCreate(){
-        setContentView(R.layout.activity_main);
         setupFindViewbyIds();
         setupToobar();
         setupNavigationDrawer();
-        if(saved == null){
+        if(savedInstanceState == null){
             inflaFragmentComArg(ARG_TIPO_BUSCA);
         }
 
@@ -151,9 +151,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private void inflaFragmentComArg(int tipo_lista){
         ListaFilmesFragment frag = ListaFilmesFragment.newInstance();
         Bundle arg = new Bundle();
+
         arg.putInt(ARG_TIPO_LISTA, tipo_lista);
         frag.setArguments(arg);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag).addToBackStack(null).commitAllowingStateLoss();
     }
 
     @Override
