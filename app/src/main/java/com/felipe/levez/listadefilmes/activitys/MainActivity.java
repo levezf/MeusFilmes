@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         toolbar.setTitle(R.string.lista_favoritos);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
