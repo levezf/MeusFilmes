@@ -47,7 +47,7 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
             tipo_lista = savedInstanceState.getInt(EXTRA_TIPO_LISTA);
         }
 
-        setContentView(R.layout.activity_scrolling);
+        setContentView(R.layout.activity_details_filme_scrolling);
         setupFindViewByIds();
         setupValores();
 
