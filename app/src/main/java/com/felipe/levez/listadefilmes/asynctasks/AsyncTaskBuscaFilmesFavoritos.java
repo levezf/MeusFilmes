@@ -35,7 +35,7 @@ public class AsyncTaskBuscaFilmesFavoritos extends AsyncTask<Void, Filme, Void> 
 
             }while (cursor.moveToNext());
         }else
-            publishProgress( null);
+            publishProgress( new Filme());
         cursor.close();
 
         return null;
@@ -43,7 +43,7 @@ public class AsyncTaskBuscaFilmesFavoritos extends AsyncTask<Void, Filme, Void> 
 
     @Override
     protected void onProgressUpdate(Filme... values) {
-        if(values!=null)
+        if(values[0].getTitulo()!=null)
             model.adicionaFilme(values[0]);
         else
             model.exibeMensagemListaVazia();

@@ -19,6 +19,9 @@ public class Filme implements Parcelable {
     private final String dataLancamento;
 
 
+    public Filme(){
+        this(null, null, null, null, null, null);
+    }
 
     public static Filme criaFilmeManualmente(String titulo){
         return new Filme(titulo, null, "Filme Adicionado Manualmente: Não há dados sobre este filme", titulo, "Não há recomendação", "-");

@@ -29,8 +29,8 @@ public class FilmeDAO  extends SQLiteConexao{
         values.put(COLUNA_DATA_LANCAMENTO, filme.getDataLancamento());
         if(filme.getId().equals(filme.getTitulo())){
             Cursor cursor = db.rawQuery("SELECT ID FROM TB_Filme ORDER BY ID DESC LIMIT 1;", null);
-            cursor.moveToFirst();
-            filme.setId(String.valueOf(Integer.valueOf((cursor.getString(0)) +1)));
+            if(cursor.moveToFirst()) filme.setId(String.valueOf(Integer.valueOf((cursor.getString(0)) +1)));
+            else filme.setId("00000001");
             cursor.close();
         }
         values.put(COLUNA_ID, filme.getId());
