@@ -197,13 +197,14 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
         if (requestCode == REQUEST_CODE) {
             if(resultCode == Activity.RESULT_OK){
                 boolean result=data.getBooleanExtra(RESULT_ACTIVITY_DETAILS, false);
-                if(tipoLista == ARG_TIPO_FAV)
-                    if(result){
+                if(tipoLista == ARG_TIPO_FAV) {
+                    if (result) {
                         adapter.removeItem(positionItemAessadoNoDetails);
-                        if(adapter.lista_filmes.isEmpty()){
+                        if (adapter.lista_filmes.isEmpty()) {
                             exibeMensagemListaVazia();
                         }
                     }
+                }
             }
         }
     }
