@@ -194,16 +194,12 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CODE) {
-            if(resultCode == Activity.RESULT_OK){
-                boolean result=data.getBooleanExtra(RESULT_ACTIVITY_DETAILS, false);
-                if(tipoLista == ARG_TIPO_FAV) {
-                    if (result) {
-                        adapter.removeItem(positionItemAessadoNoDetails);
-                        if (adapter.lista_filmes.isEmpty()) {
-                            exibeMensagemListaVazia();
-                        }
-                    }
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            boolean result = data.getBooleanExtra(RESULT_ACTIVITY_DETAILS, false);
+            if (tipoLista == ARG_TIPO_FAV && result) {
+                adapter.removeItem(positionItemAessadoNoDetails);
+                if (adapter.lista_filmes.isEmpty()) {
+                    exibeMensagemListaVazia();
                 }
             }
         }
