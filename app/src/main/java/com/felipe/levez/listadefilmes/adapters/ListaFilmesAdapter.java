@@ -65,7 +65,6 @@ public class ListaFilmesAdapter extends RecyclerView.Adapter<ListaFilmesAdapter.
     public void insereItem(Filme filme){
         this.lista_filmes.add(filme);
         notifyItemInserted(getItemCount());
-        notifyDataSetChanged();
     }
 
     public void removeItem(int position){
