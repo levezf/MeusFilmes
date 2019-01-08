@@ -176,7 +176,6 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
         adapter.setOnItemClickListener(new FilmeClickListener() {
             @Override
             public void onFilmeClick(int position) {
-               // pesquisando=null;
                 Intent intent = new Intent(getContext(), DetailsFilmeScrollingActivity.class);
                 intent.putExtra(OPT_FILME, adapter.lista_filmes.get(position));
                 positionItemAessadoNoDetails = position;
