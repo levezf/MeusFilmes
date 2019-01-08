@@ -135,8 +135,12 @@ public class ListaFilmesFragment extends Fragment implements ListaFilmesContrato
                         String textoEditText = userInputDialogEditText.getText().toString();
                         if(userInputDialogEditText.getText()!=null && !textoEditText.isEmpty()){
                             Filme f = criaFilmeManualmente(textoEditText);
+                            if(adapter.lista_filmes.isEmpty()){
+                                exibeListaDeFilmesCarregada();
+                            }
                             adapter.insereItem(f);
                             presenter.insereFilme(f);
+
                         }
                     }
                 })
