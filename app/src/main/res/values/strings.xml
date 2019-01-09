@@ -25,4 +25,7 @@
     <string name="felipe_levez_exemplo_nav_drawer">Felipe Levez</string>
     <string name="estudante_de_ads_exemplo_nav_drawer">Estudante de ADS</string>
     <string name="lista_favoritos">Lista de Favoritos</string>
+    <string name="layout_description_imagem_expandida">Imagem expandida</string>
+    <string name="poster">Pôster</string>
+    <string name="msg_poster_indisponivel">Esse filme não possui um pôster disponível para visualização.</string>
 </resources>

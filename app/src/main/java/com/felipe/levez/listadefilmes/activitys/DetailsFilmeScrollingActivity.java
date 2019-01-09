@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.felipe.levez.listadefilmes.R;
@@ -25,7 +27,7 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
     private static final String RESULT_ACTIVITY_DETAILS = "result";
 
     private FloatingActionButton fab;
-    private ImageView iv_toolbar;
+    private ImageButton ib_toolbar;
     private Filme filme;
     private TextView descricao;
     private TextView data;
@@ -69,6 +71,28 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
             setCorFAB(false);
         }
         setupActionButtonFABFav();
+        actionButtonImagemPoster();
+    }
+
+    private void actionButtonImagemPoster(){
+
+        ib_toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(filme.getPoster()!=null && !filme.getPoster().equals("https://image.tmdb.org/t/p/w500/null")) {
+                    chamaIntentImageDetails();
+                }else{
+                    Snackbar.make(findViewById(android.R.id.content),R.string.msg_poster_indisponivel, Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    private void chamaIntentImageDetails() {
+        Intent intent = new Intent(this, ImageDetailsActivity.class);
+        intent.putExtra("link_image", filme.getPoster());
+        intent.putExtra("nome_filme", filme.getTitulo());
+        startActivity(intent);
     }
 
     private void setupActionButtonFABFav() {
@@ -108,7 +132,7 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
         presenter = new DetailsFilmeScrollingActivityPresenter(getApplicationContext());
         toolbar.setTitle(filme.getTitulo());
         if(filme!=null && filme.getPoster()!=null)
-            Picasso.get().load(filme.getPoster()).into(iv_toolbar);
+            Picasso.get().load(filme.getPoster()).into(ib_toolbar);
         data.setText(filme.getDataLancamento());
         descricao.setText(filme.getDescricao());
         votos.setText(filme.getVotoMedio());
@@ -117,7 +141,7 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
     private void setupFindViewByIds() {
         toolbar =  findViewById(R.id.toolbar);
         fab = findViewById(R.id.fab);
-        iv_toolbar = findViewById(R.id.iv_toolbar_collapsing);
+        ib_toolbar = findViewById(R.id.iv_toolbar_collapsing);
         votos = findViewById(R.id.tv_nota);
         data = findViewById(R.id.tv_data);
         descricao = findViewById(R.id.tv_descricao);

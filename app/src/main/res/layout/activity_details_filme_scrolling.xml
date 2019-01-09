@@ -23,13 +23,13 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/iv_toolbar_collapsing"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="?attr/colorPrimary"
                 android:scaleType="centerCrop"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
                 android:contentDescription="@string/p_ster_original_do_filme" />
 
             <android.support.v7.widget.Toolbar

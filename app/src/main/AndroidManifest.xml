@@ -24,6 +24,10 @@
             android:name=".activitys.DetailsFilmeScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".activitys.ImageDetailsActivity"
+            android:label="@string/poster"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>
