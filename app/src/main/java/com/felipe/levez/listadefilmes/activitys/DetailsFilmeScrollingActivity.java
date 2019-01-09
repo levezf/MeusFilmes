@@ -44,8 +44,7 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
         if (savedInstanceState == null) {
             filme = Objects.requireNonNull(getIntent().getExtras()).getParcelable(OPT_FILME);
             tipo_lista = getIntent().getExtras().getInt(EXTRA_TIPO_LISTA);
-        }
-        else{
+        }else{
             filme = savedInstanceState.getParcelable(OPT_FILME);
             tipo_lista = savedInstanceState.getInt(EXTRA_TIPO_LISTA);
         }
@@ -132,8 +131,9 @@ public class DetailsFilmeScrollingActivity extends AppCompatActivity implements 
     private void setupValores(){
         presenter = new DetailsFilmeScrollingActivityPresenter(getApplicationContext());
         toolbar.setTitle(filme.getTitulo());
-        if(filme!=null && filme.getPoster()!=null)
+        if(filme!=null && filme.getPoster()!=null) {
             Picasso.get().load(filme.getPoster()).into(ib_toolbar);
+        }
         data.setText(filme.getDataLancamento());
         descricao.setText(filme.getDescricao());
         votos.setText(filme.getVotoMedio());
