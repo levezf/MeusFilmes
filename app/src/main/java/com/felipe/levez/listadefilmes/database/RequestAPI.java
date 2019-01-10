@@ -82,7 +82,7 @@ public class RequestAPI {
                             if(page_atual ==1){
                                 model.visibilidadeProgressBarLista(View.INVISIBLE);
                             }
-                            if (page_atual < page_max) {
+                            if (page_atual < page_max && page_atual <= 1000) {
                                 executeSearch((page_atual + 1), busca);
                             }
 
