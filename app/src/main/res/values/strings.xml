@@ -13,7 +13,7 @@
     <string name="fechar_drawer">Fechar drawer</string>
     <string name="msg_permissao_negada">Não será possivel continuar com a aplicação. O aplicativo será fechado.</string>
     <string name="msg_titulo_permissao_negada">Permissões negadas</string>
-    <string name="lista_filmes_vazia">Nenhum Filme favorito encontrado\nAdicione filmes à sua lista.</string>
+    <string name="lista_filmes_vazia">Nenhum Filme favorito encontrado.\nAdicione filmes à sua lista.</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="p_ster_original_do_filme">Pôster original do filme</string>
     <string name="t_tulo_do_filme">Título do filme</string>
